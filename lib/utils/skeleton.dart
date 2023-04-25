@@ -10,12 +10,10 @@ Add to main within the page's button
 File Skeleton [
     import 'package:flutter/cupertino.dart';
     import 'package:flutter/material.dart';
-    import 'package:units/database.dart';
 
     class PageName extends StatefulWidget {
 
-      PageName({Key? key, required this.database}) : super (key: key);
-      SleepData database;
+      PageName({Key? key}) : super (key: key);
 
       @override
       _PageNameState createState() => _PageNameState();
@@ -32,9 +30,9 @@ File Skeleton [
           appBar: AppBar(
             title: Text("Title"),
             centerTitle: true,
-            backgroundColor: Colors.deepPurple,
+            backgroundColor: Colors.green.shade700,
           ),
-          backgroundColor: Colors.grey.shade900,
+          backgroundColor: Colors.white,
           body: Center(
               child: Column(
                 children: <Widget>[
