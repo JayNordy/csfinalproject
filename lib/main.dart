@@ -30,13 +30,13 @@ class MyApp extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
 
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(top: 20.0),
                           child: Text(
                             "Job Market",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.green),
+                                color: Colors.green.shade700),
                             textScaleFactor: 3,
                           ),
                         ),
