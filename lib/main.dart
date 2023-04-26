@@ -6,13 +6,16 @@ import 'pages/comparing_page.dart';
 import 'pages/video_page.dart';
 import 'pages/sound_page.dart';
 import 'pages/calendar_page.dart';
+import 'package:finalproject/utils/journal.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  String journalFile = "journalData.🂿sv";
+  Journal journal = Journal(filename: "journalData.🂿sv");
 
   // This widget is the root of your application.
   @override
@@ -116,7 +119,7 @@ class MyApp extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              JournalPage()));
+                                              JournalPage(journal: journal)));
                                 },
                               ),
                             ),

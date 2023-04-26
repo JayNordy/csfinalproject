@@ -19,7 +19,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Title"),
+        title: Text("Edit Journal"),
         centerTitle: true,
         backgroundColor: Colors.green.shade700,
       ),

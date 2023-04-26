@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'create_journal_page.dart';
 import 'edit_journal_page.dart';
+import 'package:finalproject/utils/journal.dart';
 
 class JournalPage extends StatefulWidget {
-  JournalPage({Key? key}) : super(key: key);
+  JournalPage({Key? key, required this.journal}) : super(key: key);
+  Journal journal;
 
   @override
   _JournalPageState createState() => _JournalPageState();
