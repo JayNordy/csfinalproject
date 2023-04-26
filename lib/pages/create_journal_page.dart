@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:finalproject/utils/journal.dart';
 
 class CreateJournalPage extends StatefulWidget {
-  CreateJournalPage({Key? key}) : super(key: key);
+  CreateJournalPage({Key? key, required this.journal}) : super(key: key);
+  Journal journal;
 
   @override
   _CreateJournalPageState createState() => _CreateJournalPageState();
@@ -68,10 +70,11 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
       }
     }
 
-    _createJournal(DateTime selectedDate, var company, var impressions, var challenges, var suggestions) async {
+    _createJournal(DateTime selectedDate, var company, double rating, var impressions, var challenges, var suggestions) async {
       if ((check1 != false) && (check2 != false) && (check3 != false) && (check4 != false)) {
         DateTime tempTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-        //widget.diary.addEvent(tempTime, Title: title.text, Content: textField.text);
+        widget.journal.addEvent(tempTime, Company: company.text, Quality: rating.toInt(),
+            Impressions: impressions.text, Challenges: challenges.text, Suggestions: suggestions.text);
         Navigator.pop(context);
       }
 
@@ -122,15 +125,15 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
               child: TextField(
                 maxLength: 20,
                 decoration: InputDecoration(
-                    counterStyle: new TextStyle(color: Colors.white),
+                    //counterStyle: new TextStyle(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.green.shade700)),
                     border: OutlineInputBorder(),
                     labelText: 'Company/Job',
                     labelStyle: new TextStyle(color: Colors.green.shade700)
                 ),
-                style: TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
+                //style: TextStyle(color: Colors.white),
+                //cursorColor: Colors.white,
                 controller: company,
                 onTap: () {
                   check2 = true;
@@ -148,8 +151,8 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                     labelText: 'What were your First Impressions?',
                     labelStyle: new TextStyle(color: Colors.green.shade700)
                 ),
-                style: TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
+                //style: TextStyle(color: Colors.white),
+                //cursorColor: Colors.white,
                 controller: impressions,
                 onTap: () {
                   check3 = true;
@@ -167,8 +170,8 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                     labelText: 'What were some Challenges?',
                     labelStyle: new TextStyle(color: Colors.green.shade700)
                 ),
-                style: TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
+                //style: TextStyle(color: Colors.white),
+                //cursorColor: Colors.white,
                 controller: challenges,
                 onTap: () {
                   check4 = true;
@@ -186,8 +189,8 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                     labelText: 'What are some Future Suggestions?',
                     labelStyle: new TextStyle(color: Colors.green.shade700)
                 ),
-                style: TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
+                //style: TextStyle(color: Colors.white),
+                //cursorColor: Colors.white,
                 controller: suggestions,
                 onTap: () {
                   check5 = true;
@@ -241,7 +244,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 ),
                 child: Text('Done'),
                 onPressed: () =>
-                    _createJournal(selectedDate, company, impressions, challenges, suggestions)
+                    _createJournal(selectedDate, company, rating, impressions, challenges, suggestions)
             ),
           ),
 

@@ -94,6 +94,10 @@ class JournalEntry {
     expanding = !expanding;
   }
 
+  bool getExpand()  {
+    return expanding;
+  }
+
   Widget toWidget()
   {
     String viewMore = "";
@@ -103,14 +107,15 @@ class JournalEntry {
     }
 
     if (expanding == true)  {
-      viewMore = "First Impressions: $impressions\n\nChallenges: $challenges\n\nSuggestions: $suggestions";
+      viewMore = "Quality: $quality\n\nImpressions: $impressions\n\nChallenges: $challenges\n\nSuggestions: $suggestions";
     }
 
     return Container(child: Center(child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(company, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        Text(DateFormat.MMMd().format(timeRef) + ", " + DateFormat.y().format(timeRef),overflow: TextOverflow.visible, style: TextStyle(color: Colors.white)),
+        Text(company, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
+        Text(DateFormat.MMMd().format(timeRef) + ", " + DateFormat.y().format(timeRef),
+            overflow: TextOverflow.visible, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
         Text(viewMore, overflow: TextOverflow.visible, style: TextStyle(color: Colors.white) ),
       ],
     )));

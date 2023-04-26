@@ -39,19 +39,100 @@ class _JournalPageState extends State<JournalPage> {
     print("MESSAGE" + index.toString());
   }
 
-  void deleteLastLog() {
-    //if (widget.database.getData().isNotEmpty) {
-    setState(() {
-      //widget.database.removeLastEvent();
-      nullDateSelection();
-    });
-  }
-
   void nullDateSelection() {
     setState(() {
       selectedDate = returnEpoch();
       labelSelectButton = "Find Log by Date";
     });
+  }
+
+  Widget journalToWidget() {
+    List<Widget> content = [];
+    for (int i = 0; i < widget.journal.getData().length; i++)
+    {
+      if(selectedDate != returnEpoch())
+      {
+        if(isOnSameDay(widget.journal.getData()[i].timeRef, selectedDate))
+        {
+          content.add(Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Flex(direction: Axis.horizontal,
+                  children: [widget.journal.getData(index: i)[0].toWidget()]),
+              Column(
+                  children: <Widget> [
+                    IconButton(
+                        onPressed: () async{
+                          await Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => EditJournalPage(journal: widget.journal, entry: widget.journal.getData(index: i)[0])));
+                          nullDateSelection();
+                        },
+                        color: Colors.white,
+                        icon: const Icon(Icons.edit)),
+                    IconButton(
+                        onPressed: () async{
+                          widget.journal.getData(index: i)[0].expand();
+                          nullDateSelection();
+                        },
+                        color: Colors.white,
+                        icon: widget.journal.getData(index: i)[0].getExpand()
+                            ? Icon(Icons.expand_less)
+                            : Icon(Icons.expand_more)
+                    ),
+                  ]),
+            ],
+          ),);
+        }
+      }
+      else {
+        content.add(Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Flex(direction: Axis.horizontal,
+                children: [widget.journal.getData(index: i)[0].toWidget()]),
+            Column(
+                children: <Widget> [
+                  IconButton(
+                      onPressed: () async{
+                        await Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => EditJournalPage(journal: widget.journal, entry: widget.journal.getData(index: i)[0])));
+                        nullDateSelection();
+                      },
+                      color: Colors.white,
+                      icon: const Icon(Icons.edit)),
+                  IconButton(
+                      onPressed: () async{
+                        widget.journal.getData(index: i)[0].expand();
+                        nullDateSelection();
+                      },
+                      color: Colors.white,
+                      icon: widget.journal.getData(index: i)[0].getExpand()
+                          ? Icon(Icons.expand_less)
+                          : Icon(Icons.expand_more)
+                  ),
+                ]),
+          ],
+        ),);
+      }
+    }
+    return Expanded(child: ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: content.length,
+      itemBuilder: (BuildContext context, int index)
+      {
+        return Padding(
+            padding: EdgeInsets.only(right: 20, left: 20),
+            child: Container(
+              padding: EdgeInsets.all(5),
+              color: Colors.green.shade700,
+              child: content[index],
+            )
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      addAutomaticKeepAlives: false,
+    ));
+
   }
 
   @override
@@ -114,7 +195,7 @@ class _JournalPageState extends State<JournalPage> {
             child: Text('Create New Journal'),
             onPressed: () async {
               await Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CreateJournalPage()));
+                  MaterialPageRoute(builder: (context) => CreateJournalPage(journal: widget.journal)));
               nullDateSelection();
             },
           ),
@@ -128,10 +209,11 @@ class _JournalPageState extends State<JournalPage> {
                         primary: Colors.green.shade700),
                     child: Text(labelSelectButton),
                     onPressed: () => _selectDate(context)),
-                IconButton(onPressed: () => deleteLastLog(), icon: const Icon(Icons.delete_forever), color: Colors.green.shade700,) // Update this line
+                IconButton(onPressed: () => nullDateSelection(), icon: const Icon(Icons.delete_forever), color: Colors.green.shade700,) // Update this line
               ],
             ),
           ),
+          journalToWidget()
         ],
       )),
     );
