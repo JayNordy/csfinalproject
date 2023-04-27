@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'pages/job_search_page.dart';
 import 'pages/relocating_page.dart';
@@ -7,6 +8,7 @@ import 'pages/video_page.dart';
 import 'pages/sound_page.dart';
 import 'pages/calendar_page.dart';
 import 'package:finalproject/utils/journal.dart';
+import 'utils/database.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,7 @@ void main() {
 class MyApp extends StatelessWidget {
   String journalFile = "journalData.🂿sv";
   Journal journal = Journal(filename: "journalData.🂿sv");
+  JobData data = JobData();
 
   // This widget is the root of your application.
   @override

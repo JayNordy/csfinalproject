@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:intl/intl.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
 
 class JobPoint {
   String city = "CITY NAME NOT PROVIDED";
@@ -79,14 +78,12 @@ class JobData {
   String delimeter = ",";
   String fileLocation = "";
 
-  JobData({String? filename})
+  JobData()
   {
+    print("Job Data created");
     database = [];
+    _read();
 
-    if (filename != null) {
-      fileLocation = filename;
-      _read(filename);
-    }
   }
 
   void removeLastEvent() {
@@ -95,18 +92,16 @@ class JobData {
     }
   }
 
-  Future<String> _read(dir) async {
+  Future<String> loadData() async { //from: https://stackoverflow.com/questions/44816042/flutter-read-text-file-from-assets
+    return await rootBundle.loadString('assets/SofwareDeveloperIncomeExpensesperUSACity.csv');
+  }
+
+
+  _read() async {
     String text = "";
-    //print("READING");
     try {
 
-      final Directory directory = await getApplicationDocumentsDirectory();
-
-      //print(directory.toString());
-      final File file = File('${directory.path}/$dir');
-
-
-      text = await file.readAsString();
+      text = await loadData();
 
       //print("file Content read: " + text);
 
@@ -116,16 +111,42 @@ class JobData {
       //print("Entries in file: "+ length.toString());
 
       for(int i=0; i < length; i++) {
-        if ((i != length - 1)) {
+        if ((i > 0) && (i < length - 1)) {
+          print(entries[i]);
           //print("Entry[" +i.toString() + "]: " + entries[i]);
-          final line = entries[i].split(delimeter);
+          final line = entries[i].split('\"');
           /**
-          int index = int.parse(line[0]);
-          DateTime start = DateTime.parse(line[1]);
-          DateTime end = DateTime.parse(line[2]);
-          int qual = int.parse(line[3]);
-          String dream = line[4];
-          */
+          for (int j=0; j < line.length; j++) {
+            print("j[" + j.toString() + "]: " + line[j]);
+          }
+              **/
+          final middleLine = line[2].split(',');
+          /**
+          print("MiddleLine.length: " + middleLine.length.toString());
+          for (int j = 0; j < middleLine.length; j++) {
+            print("middleLine[" + j.toString() + "]: " + middleLine[j]);
+          }
+              **/
+          final endLine = line[4].split(',');
+
+          String Metro = line[1];
+          //print("Metro: " + Metro);
+          int SWDSalADJ = double.parse(middleLine[1]).toInt();
+          //print("SWDSalADJ: " + SWDSalADJ.toString());
+          int SWDSal = double.parse(middleLine[2]).toInt();
+          int GenSal = double.parse(middleLine[3]).toInt();
+          int SWDJob = double.parse(middleLine[4]).toInt();
+          int Home = double.parse(middleLine[5]).toInt();
+          String City = line[3];
+          double COL = double.parse(endLine[1]);
+          double Rent = double.parse(endLine[2]);
+          double COMP = double.parse(endLine[3]);
+          //print("COMP: " + COMP.toString());
+          double Power = double.parse(endLine[4]);
+          //print("Power: " + Power.toString());
+
+
+          /**
           String City = line[7];
           String Metro = line[1];
           int SWDSal = int.parse(line[3]);
@@ -137,15 +158,15 @@ class JobData {
           double Rent = double.parse(line[9]);
           double COMP = double.parse(line[10]);
           double Power = double.parse(line[11]);
-
+          **/
 
           addPoint(City, Metro, SWDSal, SWDSalADJ, SWDJob, GenSal, Home, COL, Rent, COMP, Power);
         }
-        print("Found File (_read) \n" + '${directory.path}/$dir');
-      }
 
+      }
+      print("Found File (_read, DATABASE) \n");
     } catch (e) {
-      print("Couldn't read file (_read)");
+      print("Couldn't read file (_read, DATABASE) \n");
     }
     return text;
   }
@@ -182,34 +203,10 @@ class JobData {
     }
   }
 
-  void save()
-  {
-    String writeBuffer = "";
-    int len = database.length;
-    for( var i = 0 ; i < len; i++ ) {
-      writeBuffer += database[i].eventNumber.toString() + delimeter;
-      writeBuffer += database[i].sleep.toString() + delimeter;
-      writeBuffer += database[i].wake.toString() + delimeter;
-      writeBuffer += database[i].quality.toString() + delimeter;
-      writeBuffer += database[i].dream.toString();
-      writeBuffer += "\n";
-    }
-    _write(writeBuffer);
-  }
-
-  _write(String text) async { // from https://stackoverflow.com/questions/54122850/how-to-read-and-write-a-text-file-in-flutter
-    await Future.delayed(const Duration( seconds: 2), () {});
-    final Directory directory = await getApplicationDocumentsDirectory();
-    final File file = File('${directory.path}/$fileLocation');
-    await file.writeAsString(text);
-    //print("saved at " + '${directory.path}/$dir');
-  }
-
-
 } // END OF CLASS SleepData
 
 void main() // test func
 {
-  JobData gen = JobData(filename: "data.csv");
-  print(gen.getData()[0].toString());
+  //JobData gen = JobData(filename: "data.csv");
+  //print(gen.getData()[0].toString());
 }
