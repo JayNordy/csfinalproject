@@ -1,5 +1,10 @@
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../utils/database.dart';
+import '../utils/widgetaudioplayer.dart';
+import 'dart:async';
 
 class SoundsPage extends StatefulWidget {
 
@@ -9,27 +14,107 @@ class SoundsPage extends StatefulWidget {
   _SoundsPageState createState() => _SoundsPageState();
 }
 
-class _SoundsPageState extends State<SoundsPage>  {
+class _SoundsPageState extends State<SoundsPage> {
+  List<WidgetAudioPlayer> players = [];
+  List<Widget> displayables = [];
+
+  DateTime loadEnd = DateTime.now().add(Duration(seconds: 10));
+  Timer refreshTimer = Timer.periodic(Duration(hours: 2), (timer) { });
+
+  void updateTimestamps()
+  {
+    for(int i = 0; i < players.length; i++)
+      {
+        if(players[i].isPlaying)
+          {
+            players[i].updateProg();
+          }
+      }
+  }
+
+  void update()
+  {
+    //print(widget.soundsLoaded);
+    if(!refreshTimer.isActive)
+    {
+      refreshTimer.cancel();
+      return;
+    }
+    if((refreshTimer.isActive)) {
+      updateTimestamps();
+      setState(() {
+        List<Widget> holder = [];
+        for (int i = 0; i < players.length; i++) {
+          if (players[i].needsUpdating) {
+            holder.add(players[i].toWidget());
+            players[i].needsUpdating = false;
+          }
+          else {
+            holder.add(displayables[i]);
+          }
+        }
+        displayables = holder;
+      });
+    }
+  }
+
   @override
   void initState() {
+
+    final refreshTimer = Timer.periodic(
+      const Duration(milliseconds: 100),
+          (timer) {
+        update();
+      },
+    );
+
+
+    players.add(WidgetAudioPlayer("Autumn Day", "autumn.mp3"));
+    players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3"));
+
+
+    update();
     super.initState();
   }
+
+  void killAll()
+  {
+    refreshTimer.cancel();
+    print("consuming timer " + refreshTimer.toString());
+    for(int i = 0; i < players.length; i++)
+    {
+      players[i].player.stop();
+      players[i].needsUpdating = false;
+    }
+    players = [];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Soothing Sounds"),
-        centerTitle: true,
-        backgroundColor: Colors.green.shade700,
-      ),
-      backgroundColor: Colors.white,
-      body: Center(
-          child: Column(
-            children: <Widget>[
-              //Insert the build within here
-            ],
-          )
-      ),
-    );
+
+    return WillPopScope(
+        onWillPop: () async {
+          killAll();
+          return true; // allow pop
+        },
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text("Sounds"),
+              centerTitle: true,
+              backgroundColor: Colors.deepPurple,
+            ),
+            backgroundColor: Colors.grey.shade900,
+            body: Center(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView(
+                      children: displayables,
+                    ),
+                  ),
+                ],
+              ),
+            )
+        ));
   }
 }
