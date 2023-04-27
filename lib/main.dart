@@ -6,7 +6,7 @@ import 'pages/journal_page.dart';
 import 'pages/comparing_page.dart';
 import 'pages/video_page.dart';
 import 'pages/sound_page.dart';
-import 'pages/calendar_page.dart';
+import 'pages/career_goals_page.dart';
 import 'package:finalproject/utils/journal.dart';
 import 'utils/database.dart';
 
@@ -177,14 +177,14 @@ class MyApp extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.green.shade700),
-                              child: const Text('Calendar'),
+                              child: const Text('Career Goals'),
                               onPressed: () async {
                                 //wait for page to exit before setting "soundsLoaded" to ture
                                 await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          CalendarPage()));
+                                          CareerGoalsPage()));
                               },
                             ),
                           ),
