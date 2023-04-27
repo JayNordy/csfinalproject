@@ -72,8 +72,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
 
     _createJournal(DateTime selectedDate, var company, double rating, var impressions, var challenges, var suggestions) async {
       if ((check1 != false) && (check2 != false) && (check3 != false) && (check4 != false)) {
-        DateTime tempTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-        widget.journal.addEvent(tempTime, Company: company.text, Quality: rating.toInt(),
+        widget.journal.addEvent(selectedDate, Company: company.text, Quality: rating.toInt(),
             Impressions: impressions.text, Challenges: challenges.text, Suggestions: suggestions.text);
         Navigator.pop(context);
       }
@@ -86,6 +85,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Create Journal"),
         centerTitle: true,

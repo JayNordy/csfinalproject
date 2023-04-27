@@ -17,12 +17,16 @@ class _EditJournalPageState extends State<EditJournalPage> {
   @override
   void initState() {
     super.initState();
+    company.text = widget.entry.company;
+    impressions.text = widget.entry.impressions;
+    challenges.text = widget.entry.challenges;
+    suggestions.text = widget.entry.suggestions;
+    labelSelectDate = "${widget.entry.timeRef.month}/${widget.entry.timeRef.day}/${widget.entry.timeRef.year}";
+    tempRate = widget.entry.quality.toDouble();
   }
   bool check1 = false;
   bool check2 = false;
-  bool check3 = false;
-  bool check4 = false;
-  bool check5 = false;
+  double tempRate = 0;
 
   var company = TextEditingController();
   var impressions = TextEditingController();
@@ -32,7 +36,6 @@ class _EditJournalPageState extends State<EditJournalPage> {
   double rating = 0;
 
   String labelSelectDate = "Select a Date";
-  String labelError = "";
 
   @override
   Widget build(BuildContext context) {
@@ -72,13 +75,46 @@ class _EditJournalPageState extends State<EditJournalPage> {
     }
 
     _editJournal(DateTime selectedDate, var company, double rating, var impressions, var challenges, var suggestions) async {
-        DateTime tempTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
-        widget.journal.addEvent(tempTime, Company: company, Quality: rating.toInt(),
-            Impressions: impressions, Challenges: challenges, Suggestions: suggestions);
+      if(check1 && check2) {
+        widget.journal.editEvent(widget.entry.eventNumber, Ref: selectedDate,
+            Company: company.text,
+            Quality: rating.toInt(),
+            Impressions: impressions.text,
+            Challenges: challenges.text,
+            Suggestions: suggestions.text);
         Navigator.pop(context);
+      }
+      else if(!check1 && check2)  {
+        widget.journal.editEvent(widget.entry.eventNumber, Ref: widget.entry.timeRef,
+            Company: company.text,
+            Quality: rating.toInt(),
+            Impressions: impressions.text,
+            Challenges: challenges.text,
+            Suggestions: suggestions.text);
+        Navigator.pop(context);
+      }
+      else if(check1 && !check2)  {
+        widget.journal.editEvent(widget.entry.eventNumber, Ref: selectedDate,
+            Company: company.text,
+            Quality: widget.entry.quality,
+            Impressions: impressions.text,
+            Challenges: challenges.text,
+            Suggestions: suggestions.text);
+        Navigator.pop(context);
+      }
+      else if(!check1 && !check2)  {
+        widget.journal.editEvent(widget.entry.eventNumber, Ref: widget.entry.timeRef,
+            Company: company.text,
+            Quality: widget.entry.quality,
+            Impressions: impressions.text,
+            Challenges: challenges.text,
+            Suggestions: suggestions.text);
+        Navigator.pop(context);
+      }
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Edit Journal"),
         centerTitle: true,
@@ -118,19 +154,13 @@ class _EditJournalPageState extends State<EditJournalPage> {
                   child: TextField(
                     maxLength: 20,
                     decoration: InputDecoration(
-                        counterStyle: new TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.green.shade700)),
                         border: OutlineInputBorder(),
                         labelText: 'Company/Job',
                         labelStyle: new TextStyle(color: Colors.green.shade700)
                     ),
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
                     controller: company,
-                    onTap: () {
-                      check2 = true;
-                    },
                   )
               ),
 
@@ -144,12 +174,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
                         labelText: 'What were your First Impressions?',
                         labelStyle: new TextStyle(color: Colors.green.shade700)
                     ),
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
                     controller: impressions,
-                    onTap: () {
-                      check3 = true;
-                    },
                   )
               ),
 
@@ -163,12 +188,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
                         labelText: 'What were some Challenges?',
                         labelStyle: new TextStyle(color: Colors.green.shade700)
                     ),
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
                     controller: challenges,
-                    onTap: () {
-                      check4 = true;
-                    },
                   )
               ),
 
@@ -182,12 +202,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
                         labelText: 'What are some Future Suggestions?',
                         labelStyle: new TextStyle(color: Colors.green.shade700)
                     ),
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
                     controller: suggestions,
-                    onTap: () {
-                      check5 = true;
-                    },
                   )
               ),
 
@@ -207,12 +222,12 @@ class _EditJournalPageState extends State<EditJournalPage> {
                 child: RatingBar(
                   minRating: 0,
                   maxRating: 5,
-                  initialRating: 3,
+                  initialRating: widget.entry.quality.toDouble(),
                   allowHalfRating: false,
                   onRatingUpdate: (rate)  {
                     setState(() {
                       rating = rate;
-                      check3 = true;
+                      check2 = true;
                     });
                   },
                   ratingWidget: RatingWidget(
@@ -239,15 +254,6 @@ class _EditJournalPageState extends State<EditJournalPage> {
                     onPressed: () =>
                         _editJournal(selectedDate, company, rating, impressions, challenges, suggestions)
                 ),
-              ),
-
-              Padding(
-                  padding: EdgeInsets.only(top: 20.0,),
-                  child: Text(labelError, style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.redAccent),
-                    textScaleFactor: 2,
-                    textAlign: TextAlign.center,)
               ),
             ],
           )),
