@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              RelocatingPage()));
+                                              RelocatingPage(data: data)));
                                 },
                               ),
                             ),
