@@ -68,14 +68,14 @@ class _SoundsPageState extends State<SoundsPage> {
       },
     );
 
-    players.add(WidgetAudioPlayer("Two Together", "twoTogether.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Autumn Day", "autumn.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Hanging Out", "hangingOut.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Dog Days", "dogDays.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Falling Snow", "fallingSnow.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Lobby Time", "lobbyTime.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Feelin' Good", "feelinGood.mp3", Icon(Icons.music_note, color: Colors.white,)));
-    players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3", Icon(Icons.music_note, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Two Together", "twoTogether.mp3", Icon(Icons.favorite, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Autumn Day", "autumn.mp3", Icon(Icons.park, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Hanging Out", "hangingOut.mp3", Icon(Icons.nightlife, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Dog Days", "dogDays.mp3", Icon(Icons.sunny, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Falling Snow", "fallingSnow.mp3", Icon(Icons.snowing, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Lobby Time", "lobbyTime.mp3", Icon(Icons.hotel, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Feelin' Good", "feelinGood.mp3", Icon(Icons.face, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3", Icon(Icons.bug_report, color: Colors.white )));
     players.add(WidgetAudioPlayer("Peptalk One", "pep1.mp3", Icon(Icons.groups, color: Colors.white )));
     players.add(WidgetAudioPlayer("Peptalk Two", "pep2.mp3", Icon(Icons.groups, color: Colors.white )));
     players.add(WidgetAudioPlayer("Peptalk Three", "pep3.mp3", Icon(Icons.groups, color: Colors.white )));
