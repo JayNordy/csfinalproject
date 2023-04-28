@@ -10,6 +10,7 @@ class WidgetAudioPlayer
   String source = "";
   String name = "";
   Icon icon = Icon(Icons.question_mark, color: Colors.red, size: 44,); //obvious init to find erros
+  Icon labelIcon = Icon(Icons.question_mark, color: Colors.red, size: 44,);
   Color buttonColor = Colors.grey;
   double progress = 0;
   double volume = 0.5;
@@ -17,7 +18,7 @@ class WidgetAudioPlayer
   bool needsUpdating = true;
   String seekLabel = "";
 
-  WidgetAudioPlayer(String Name, String srcdir)
+  WidgetAudioPlayer(String Name, String srcdir, Icon LabelIcon)
   {
     buttonColor = Colors.grey;
     icon = Icon(Icons.play_arrow, color: buttonColor, size: 44);
@@ -25,6 +26,8 @@ class WidgetAudioPlayer
     name = Name;
     isPlaying = false;
     volume = 0.5;
+
+    labelIcon = LabelIcon;
 
 
     player.setReleaseMode(ReleaseMode.loop);
@@ -152,6 +155,7 @@ class WidgetAudioPlayer
                           ),
                         ),
                       ),
+                      labelIcon,
                     ],
                   ),
                 ),

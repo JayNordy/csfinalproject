@@ -69,8 +69,16 @@ class _SoundsPageState extends State<SoundsPage> {
     );
 
 
-    players.add(WidgetAudioPlayer("Autumn Day", "autumn.mp3"));
-    players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3"));
+    players.add(WidgetAudioPlayer("Autumn Day", "autumn.mp3", Icon(Icons.music_note, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3", Icon(Icons.music_note, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk One", "pep1.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Two", "pep2.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Three", "pep3.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Four", "pep4.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Five", "pep5.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Six", "pep6.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Seven", "pep7.mp3", Icon(Icons.groups, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Eight", "pep8.mp3", Icon(Icons.groups, color: Colors.white )));
 
 
     update();
