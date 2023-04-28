@@ -67,7 +67,9 @@ class JobPoint {
   }
 
   Widget toWidget() {
-    return Text("database:JobCity:toWidget not yet implimented!");
+    return Padding(padding: EdgeInsets.all(10), child: Container(color: Colors.blueGrey, width: 200, height: 300, child: Column(children: <Widget>[
+      Text(toString(), style: TextStyle(color: Colors.white),),
+    ],),));
   }
 
 } //END OF CLASS SleepEvent

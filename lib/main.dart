@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              JobSearchPage()));
+                                              JobSearchPage(data: data)));
                                 },
                               ),
                             ),
