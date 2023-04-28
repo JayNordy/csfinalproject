@@ -27,7 +27,8 @@ class WidgetAudioPlayer
     isPlaying = false;
     volume = 0.5;
 
-    labelIcon = LabelIcon;
+    labelIcon = Icon(LabelIcon.icon, color: LabelIcon.color, size: 44,);
+
 
 
     player.setReleaseMode(ReleaseMode.loop);
@@ -115,9 +116,9 @@ class WidgetAudioPlayer
   Widget toWidget()
   {
     return Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         child: Center( child: Container(
-          color: Colors.deepPurple,
+          color: Colors.blueGrey,
           child: Center(
             child:Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -135,6 +136,7 @@ class WidgetAudioPlayer
                               thumbColor: Colors.white,
                               activeTrackColor: Colors.white,
                               trackHeight: 10.0,
+                              inactiveTrackColor: Colors.black12,
                           ),
                               child: Slider(
                                 value: progress, onChanged: userSeek, min: 0, max: 1, label: seekLabel,)
@@ -148,7 +150,7 @@ class WidgetAudioPlayer
                           SliderTheme(data: SliderThemeData(
                               thumbColor: Colors.white,
                               activeTrackColor: Colors.white,
-
+                              inactiveTrackColor: Colors.black12,
                           ),
                               child: Slider(
                                 value: volume, onChanged: updateVolume, min: 0, max: 1, label: volume.toString(), )

@@ -76,14 +76,15 @@ class _SoundsPageState extends State<SoundsPage> {
     players.add(WidgetAudioPlayer("Lobby Time", "lobbyTime.mp3", Icon(Icons.hotel, color: Colors.white,)));
     players.add(WidgetAudioPlayer("Feelin' Good", "feelinGood.mp3", Icon(Icons.face, color: Colors.white,)));
     players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3", Icon(Icons.bug_report, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk One", "pep1.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Two", "pep2.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Three", "pep3.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Four", "pep4.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Five", "pep5.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Six", "pep6.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Seven", "pep7.mp3", Icon(Icons.groups, color: Colors.white )));
-    players.add(WidgetAudioPlayer("Peptalk Eight", "pep8.mp3", Icon(Icons.groups, color: Colors.white )));
+
+    players.add(WidgetAudioPlayer("Peptalk One", "pep1.mp3", Icon(Icons.museum, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Two", "pep2.mp3", Icon(Icons.local_fire_department, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Three", "pep3.mp3", Icon(Icons.access_time, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Four", "pep4.mp3", Icon(Icons.hotel, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Five", "pep5.mp3", Icon(Icons.wb_twilight, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Six", "pep6.mp3", Icon(Icons.stairs, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Seven", "pep7.mp3", Icon(Icons.local_hospital, color: Colors.white )));
+    players.add(WidgetAudioPlayer("Peptalk Eight", "pep8.mp3", Icon(Icons.directions_run, color: Colors.white )));
 
 
     update();
@@ -98,6 +99,7 @@ class _SoundsPageState extends State<SoundsPage> {
     {
       players[i].player.stop();
       players[i].needsUpdating = false;
+      players[i].player.release();
     }
     players = [];
   }
@@ -114,15 +116,28 @@ class _SoundsPageState extends State<SoundsPage> {
             appBar: AppBar(
               title: Text("Sounds"),
               centerTitle: true,
-              backgroundColor: Colors.deepPurple,
+              backgroundColor: Colors.blueGrey,
             ),
             backgroundColor: Colors.grey.shade900,
             body: Center(
               child: Column(
                 children: <Widget>[
+                  Text("Relaxing Music", style: TextStyle(color: Colors.white, fontSize: 32),),
                   Expanded(
-                    child: ListView(
-                      children: displayables,
+                    child: Container(
+                      decoration: BoxDecoration(border: Border.all(color: Colors.deepPurpleAccent, width: 15)),
+                      child: ListView(
+                        children: displayables.sublist(0,7),
+                      ),
+                    ),
+                  ),
+                  Text("Motivational Speeches", style: TextStyle(color: Colors.white, fontSize: 32),),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen, width: 15)),
+                      child: ListView(
+                        children: displayables.sublist(8),
+                      ),
                     ),
                   ),
                 ],

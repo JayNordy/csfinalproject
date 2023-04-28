@@ -157,7 +157,7 @@ class MyApp extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.green.shade700),
-                                child: const Text('Soothing Sounds'),
+                                child: const Text('Music & Motivational Speeches'),
                                 onPressed: () {
                                   Navigator.push(
                                       context,
