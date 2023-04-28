@@ -68,8 +68,13 @@ class _SoundsPageState extends State<SoundsPage> {
       },
     );
 
-
+    players.add(WidgetAudioPlayer("Two Together", "twoTogether.mp3", Icon(Icons.music_note, color: Colors.white,)));
     players.add(WidgetAudioPlayer("Autumn Day", "autumn.mp3", Icon(Icons.music_note, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Hanging Out", "hangingOut.mp3", Icon(Icons.music_note, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Dog Days", "dogDays.mp3", Icon(Icons.music_note, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Falling Snow", "fallingSnow.mp3", Icon(Icons.music_note, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Lobby Time", "lobbyTime.mp3", Icon(Icons.music_note, color: Colors.white,)));
+    players.add(WidgetAudioPlayer("Feelin' Good", "feelinGood.mp3", Icon(Icons.music_note, color: Colors.white,)));
     players.add(WidgetAudioPlayer("Daydreaming Dragonflies", "dragonfly.mp3", Icon(Icons.music_note, color: Colors.white )));
     players.add(WidgetAudioPlayer("Peptalk One", "pep1.mp3", Icon(Icons.groups, color: Colors.white )));
     players.add(WidgetAudioPlayer("Peptalk Two", "pep2.mp3", Icon(Icons.groups, color: Colors.white )));
