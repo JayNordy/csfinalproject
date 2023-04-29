@@ -36,7 +36,7 @@ class _JobSearchState extends State<JobSearchPage>  {
       for (int i = 0; i < widget.data
           .getData()
           .length; i++) {
-        if (widget.data.getData(index: i)[0].city.toLowerCase().startsWith(search)) {
+        if (widget.data.getData(index: i)[0].city.toLowerCase().startsWith(search) || widget.data.getData(index: i)[0].metro.toLowerCase().startsWith(search)) {
           displayables.add(widget.data.getData(index: i)[0].toWidget());
         }
       }
@@ -63,8 +63,8 @@ class _JobSearchState extends State<JobSearchPage>  {
                   },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Enter a City Name to Search",
-                    labelStyle: TextStyle(fontSize: 24),
+                    labelText: "Enter a City Name or Metro to Search",
+                    labelStyle: TextStyle(fontSize: 22),
                   ),
                 ),
                 Expanded(
