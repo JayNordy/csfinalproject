@@ -114,7 +114,7 @@ class JobData {
 
       for(int i=0; i < length; i++) {
         if ((i > 0) && (i < length - 1)) {
-          print(entries[i]);
+          //print(entries[i]);
           //print("Entry[" +i.toString() + "]: " + entries[i]);
           final line = entries[i].split('\"');
           /**

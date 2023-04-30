@@ -17,7 +17,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   String journalFile = "journalData.🂿sv";
-  Journal journal = Journal(filename: "journalData.🂿sv");
+  Journal journal = Journal();
   JobData data = JobData();
 
   // This widget is the root of your application.
