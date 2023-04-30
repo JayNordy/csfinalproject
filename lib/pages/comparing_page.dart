@@ -174,9 +174,9 @@ class _ComparingState extends State<ComparingPage>  {
                 height: 200,
                 child: Column(
                   children: [
-                    cityOne,
-                    unAdjustedOne,
-                    adjustedOne,
+                    Text(cityOne.data!, style: TextStyle(color:Colors.black, fontSize: 24),),
+                    Text(unAdjustedOne.data!, style: TextStyle(color:Colors.black, fontSize: 24),),
+                    Text(adjustedOne.data!, style: TextStyle(color:Colors.black, fontSize: 24),),
                   ],
                 ),
 
@@ -187,9 +187,9 @@ class _ComparingState extends State<ComparingPage>  {
                 height: 200,
                 child: Column(
                   children: [
-                    cityTwo,
-                    unAdjustedTwo,
-                    adjustedTwo,
+                    Text(cityTwo.data!, style: TextStyle(color:Colors.black, fontSize: 24),),
+                    Text(unAdjustedTwo.data!, style: TextStyle(color:Colors.black, fontSize: 24),),
+                    Text(adjustedTwo.data!, style: TextStyle(color:Colors.black, fontSize: 24),),
                   ],
                 ),
 

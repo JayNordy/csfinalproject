@@ -139,7 +139,7 @@ class Journal {
 
   Future<String> _read(dir) async {
     String text = "";
-    //print("READING");
+    print("READING" + dir);
     try {
 
       final Directory directory = await getApplicationDocumentsDirectory();
@@ -170,7 +170,7 @@ class Journal {
           String suggestions = line[6];
           addEvent(ref, Company: company, Quality: quality, Impressions: impressions, Challenges: challenges, Suggestions: suggestions);
         }
-        //print("Found File (_read) \n" + '${directory.path}/$dir');
+        print("Found File (_read) \n" + '${directory.path}/$dir');
       }
 
     } catch (e) {

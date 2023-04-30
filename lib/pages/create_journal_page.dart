@@ -135,7 +135,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: company,
-                onTap: () {
+                onChanged: (String str) {
                   check2 = true;
                 },
               )
@@ -154,7 +154,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: impressions,
-                onTap: () {
+                onChanged: (String str) {
                   check3 = true;
                 },
               )
@@ -173,7 +173,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: challenges,
-                onTap: () {
+                onChanged: (String str) {
                   check4 = true;
                 },
               )
@@ -192,7 +192,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: suggestions,
-                onTap: () {
+                onChanged: (String str) {
                   check5 = true;
                 },
               )
