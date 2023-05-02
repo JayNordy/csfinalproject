@@ -24,7 +24,7 @@ class _VideoPageState extends State<VideoPage>  {
         backgroundColor: Colors.green.shade700,
       ),
       backgroundColor: Colors.white,
-      body: Center(
+      body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Padding(
@@ -39,7 +39,7 @@ class _VideoPageState extends State<VideoPage>  {
                   )),
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                    height: 75,
+                    height: 250,
                     color: Colors.green.shade700,
                     child: ListTile(
                       leading: InkWell(
@@ -60,14 +60,19 @@ class _VideoPageState extends State<VideoPage>  {
                                   color: Colors.white)),
                             ],
                           ),
+                          Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 1.jpg')
+                          ),
                         ],
                       ),
-                    )
+                    ),
                 ),
               ),
+
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                  height: 75,
+                  height: 250,
                   color: Colors.green.shade700,
                   child: ListTile(
                     leading: InkWell(
@@ -88,6 +93,10 @@ class _VideoPageState extends State<VideoPage>  {
                                 color: Colors.white)),
                           ],
                         ),
+                        Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 2.jpg')
+                        ),
                       ],
                     ),
                   ),
@@ -95,7 +104,7 @@ class _VideoPageState extends State<VideoPage>  {
               ),
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                  height: 75,
+                  height: 250,
                   color: Colors.green.shade700,
                   child: ListTile(
                     leading: InkWell(
@@ -116,6 +125,10 @@ class _VideoPageState extends State<VideoPage>  {
                                 color: Colors.white)),
                           ],
                         ),
+                        Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 3.jpg')
+                        ),
                       ],
                     ),
                   ),
@@ -123,7 +136,7 @@ class _VideoPageState extends State<VideoPage>  {
               ),
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                  height: 75,
+                  height: 250,
                   color: Colors.green.shade700,
                   child: ListTile(
                     leading: InkWell(
@@ -144,6 +157,10 @@ class _VideoPageState extends State<VideoPage>  {
                                 color: Colors.white)),
                           ],
                         ),
+                        Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 5.jpg')
+                        ),
                       ],
                     ),
                   ),
@@ -151,7 +168,7 @@ class _VideoPageState extends State<VideoPage>  {
               ),
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                  height: 75,
+                  height: 250,
                   color: Colors.green.shade700,
                   child: ListTile(
                     leading: InkWell(
@@ -172,6 +189,10 @@ class _VideoPageState extends State<VideoPage>  {
                                 color: Colors.white)),
                           ],
                         ),
+                        Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 6.jpg')
+                        ),
                       ],
                     ),
                   ),
@@ -179,7 +200,7 @@ class _VideoPageState extends State<VideoPage>  {
               ),
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                  height: 75,
+                  height: 250,
                   color: Colors.green.shade700,
                   child: ListTile(
                     leading: InkWell(
@@ -200,6 +221,10 @@ class _VideoPageState extends State<VideoPage>  {
                                 color: Colors.white)),
                           ],
                         ),
+                        Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 7.jpg')
+                        ),
                       ],
                     ),
                   ),
@@ -207,7 +232,7 @@ class _VideoPageState extends State<VideoPage>  {
               ),
               Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0,),
                 child: Container(
-                  height: 75,
+                  height: 250,
                   color: Colors.green.shade700,
                   child: ListTile(
                     leading: InkWell(
@@ -227,6 +252,10 @@ class _VideoPageState extends State<VideoPage>  {
                                 "Last-Minute Interview Prep! (How to Prepare\nfor an Interview in Under 10 Minutes!)", style: const TextStyle(
                                 color: Colors.white)),
                           ],
+                        ),
+                        Padding(                       //https://stackoverflow.com/questions/62257275/how-to-handle-right-overflowed-inside-listtile-flutter
+                            padding: EdgeInsets.only(top: 15, bottom: 20),
+                            child: Image.asset('assets/images/thumbnail 8.jpg')
                         ),
                       ],
                     ),
