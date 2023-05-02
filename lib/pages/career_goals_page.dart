@@ -40,15 +40,24 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> {
     });
   }
 
-  void checkGoal(int index, bool isShortTermGoal) {
+  void toggleCheckGoal(int index, bool isShortTermGoal) {
     setState(() {
       if (isShortTermGoal) {
-        shortTermGoals[index] = '✅ ' + shortTermGoals[index];
+        if (shortTermGoals[index].startsWith('✅ ')) {
+          shortTermGoals[index] = shortTermGoals[index].substring(2);
+        } else {
+          shortTermGoals[index] = '✅ ' + shortTermGoals[index];
+        }
       } else {
-        longTermGoals[index] = '✅ ' + longTermGoals[index];
+        if (longTermGoals[index].startsWith('✅ ')) {
+          longTermGoals[index] = longTermGoals[index].substring(2);
+        } else {
+          longTermGoals[index] = '✅ ' + longTermGoals[index];
+        }
       }
     });
   }
+
 
   Widget buildGoalList(List<String> goals, bool isShortTermGoal) {
     return ListView.builder(
@@ -59,7 +68,7 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> {
           title: Text(goals[index]),
           trailing: Checkbox(
             value: goals[index].startsWith('✅ '),
-            onChanged: (value) => checkGoal(index, isShortTermGoal),
+            onChanged: (value) => toggleCheckGoal(index, isShortTermGoal),
           ),
         );
       },
@@ -72,9 +81,9 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> {
       appBar: AppBar(
         title: Text("Career Goals"),
         centerTitle: true,
-        backgroundColor: Colors.green.shade700,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -83,7 +92,7 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> {
             children: <Widget>[
               Text(
                 'Short-term goals',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headline6,
               ),
               SizedBox(height: 8),
               TextField(
@@ -101,7 +110,7 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> {
               SizedBox(height: 32),
               Text(
                 'Long-term goals',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headline6,
               ),
               SizedBox(height: 8),
               TextField(
