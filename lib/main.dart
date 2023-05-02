@@ -196,6 +196,7 @@ class MyApp extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Padding(padding: EdgeInsets.all(5),child: Text("All job statstics provided by Kaggle", style: TextStyle(color: Colors.black, fontSize: 16),),),
                       ],
                     ),
                   ),
