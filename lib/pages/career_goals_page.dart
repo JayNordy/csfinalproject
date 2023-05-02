@@ -25,6 +25,61 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> with TickerProviderSt
     super.initState();
   }
 
+  void editGoal(int index, bool isShortTermGoal, String updatedGoal) {
+    setState(() {
+      if (isShortTermGoal) {
+        widget.shortTermGoals[index] = updatedGoal;
+      } else {
+        widget.longTermGoals[index] = updatedGoal;
+      }
+    });
+  }
+
+  Future<void> showEditGoalDialog(int index, bool isShortTermGoal) async {
+    TextEditingController editGoalController = TextEditingController(
+      text: isShortTermGoal
+          ? widget.shortTermGoals[index]
+          : widget.longTermGoals[index],
+    );
+
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Edit Goal'),
+          content: TextField(
+            controller: editGoalController,
+            decoration: InputDecoration(
+              hintText: 'Update the goal',
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Save'),
+              onPressed: () {
+                editGoal(
+                  index,
+                  isShortTermGoal,
+                  editGoalController.text.trim(),
+                );
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
   @override
   void dispose() {
     shortTermGoalController.dispose();
@@ -103,11 +158,13 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> with TickerProviderSt
             children: [
               Checkbox(
                 checkColor: Colors.white,
-                activeColor: Theme
-                    .of(context)
-                    .primaryColor,
+                activeColor: Theme.of(context).primaryColor,
                 value: isChecked,
                 onChanged: (value) => toggleCheckGoal(index, isShortTermGoal),
+              ),
+              IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () => showEditGoalDialog(index, isShortTermGoal),
               ),
               IconButton(
                 icon: Icon(Icons.delete),
@@ -119,6 +176,7 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> with TickerProviderSt
       ),
     );
   }
+
 
   Widget slideFadeTransition(Widget child, Animation<double> animation) {
     return SlideTransition(
