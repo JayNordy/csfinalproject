@@ -67,7 +67,9 @@ class JobPoint {
   }
 
   Widget toWidget() {
-    return Text("database:JobCity:toWidget not yet implimented!");
+    return Padding(padding: EdgeInsets.all(10), child: Container(color: Colors.blueGrey, width: 200, height: 300, child: Column(children: <Widget>[
+      Text(toString(), style: TextStyle(color: Colors.white),),
+    ],),));
   }
 
 } //END OF CLASS SleepEvent
@@ -112,7 +114,7 @@ class JobData {
 
       for(int i=0; i < length; i++) {
         if ((i > 0) && (i < length - 1)) {
-          print(entries[i]);
+          //print(entries[i]);
           //print("Entry[" +i.toString() + "]: " + entries[i]);
           final line = entries[i].split('\"');
           /**

@@ -126,20 +126,16 @@ class Journal {
 
   List<JournalEntry> database = []; // List containing all data via SleepEvents
   String delimiter = "🂿";
-  String dir = "";
-  Journal({String? filename})
-  {
+  String dir = "journals.jcsv";
+
+  Journal() {
     database = [];
-
-    if (filename != null) {
-      _read(filename);
-      dir = filename;
+    _read();
     }
-  }
 
-  Future<String> _read(dir) async {
+  Future<String> _read() async {
     String text = "";
-    //print("READING");
+    print("READING" + dir);
     try {
 
       final Directory directory = await getApplicationDocumentsDirectory();
@@ -156,7 +152,7 @@ class Journal {
       final entries = text.split('\n');
       int length = entries.length;
       //print("Entries in file: "+ length.toString());
-
+      print("Found File (_read, JOURNAL) \n" + '${directory.path}/$dir');
       for(int i=0; i < length; i++) {
         if ((i != length - 1)) {
           //print("Entry[" +i.toString() + "]: " + entries[i]);
@@ -170,11 +166,11 @@ class Journal {
           String suggestions = line[6];
           addEvent(ref, Company: company, Quality: quality, Impressions: impressions, Challenges: challenges, Suggestions: suggestions);
         }
-        //print("Found File (_read) \n" + '${directory.path}/$dir');
-      }
 
+      }
+      print("FINISHED File (_read, JOURNAL) \n" + '${directory.path}/$dir');
     } catch (e) {
-      print("Couldn't read file (_read)");
+      print("Couldn't read file (_read, JOURNAL)");
     }
     return text;
   }
@@ -259,10 +255,10 @@ class Journal {
       writeBuffer += database[i].eventNumber.toString() + delimiter;
       writeBuffer += database[i].timeRef.toString() + delimiter;
       writeBuffer += database[i].company.toString() + delimiter;
-      writeBuffer += database[i].quality.toString();
-      writeBuffer += database[i].impressions.toString();
-      writeBuffer += database[i].challenges.toString();
-      writeBuffer += database[i].suggestions.toString();
+      writeBuffer += database[i].quality.toString() + delimiter;
+      writeBuffer += database[i].impressions.toString() + delimiter;
+      writeBuffer += database[i].challenges.toString() + delimiter;
+      writeBuffer += database[i].suggestions.toString() + delimiter;
       writeBuffer += "\n";
     }
     _write(writeBuffer);
@@ -273,7 +269,7 @@ class Journal {
     final Directory directory = await getApplicationDocumentsDirectory();
     final File file = File('${directory.path}/$dir');
     await file.writeAsString(text);
-    //print("saved at " + '${directory.path}/$dir');
+    print("saved at " + '${directory.path}/$dir' + '(JOURNAL)');
   }
 
 
@@ -281,7 +277,7 @@ class Journal {
 
 void main() // test func
 {
-  Journal gen = Journal(filename: "data.csv");
+  Journal gen = Journal();
   gen.addEvent(DateTime.now());
   print(gen.getData()[0].toString());
 }

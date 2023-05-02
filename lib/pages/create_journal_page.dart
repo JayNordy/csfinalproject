@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:finalproject/utils/journal.dart';
@@ -135,7 +135,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: company,
-                onTap: () {
+                onChanged: (String str) {
                   check2 = true;
                 },
               )
@@ -154,7 +154,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: impressions,
-                onTap: () {
+                onChanged: (String str) {
                   check3 = true;
                 },
               )
@@ -173,7 +173,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: challenges,
-                onTap: () {
+                onChanged: (String str) {
                   check4 = true;
                 },
               )
@@ -192,7 +192,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
                 //style: TextStyle(color: Colors.white),
                 //cursorColor: Colors.white,
                 controller: suggestions,
-                onTap: () {
+                onChanged: (String str) {
                   check5 = true;
                 },
               )

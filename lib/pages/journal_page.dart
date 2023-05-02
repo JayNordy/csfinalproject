@@ -42,7 +42,7 @@ class _JournalPageState extends State<JournalPage> {
   void nullDateSelection() {
     setState(() {
       selectedDate = returnEpoch();
-      labelSelectButton = "Find Log by Date";
+      labelSelectButton = "Find Journal by Date";
     });
   }
 
@@ -166,60 +166,66 @@ class _JournalPageState extends State<JournalPage> {
       }
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Job Journal"),
-        centerTitle: true,
-        backgroundColor: Colors.green.shade700,
-      ),
-      backgroundColor: Colors.white,
-      body: Center(
-          child: Column(
-        children: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-              child: Text(
-                "Job Journal",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.green.shade700),
-                textScaleFactor: 3,
-              )),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: Colors.green.shade700),
-            child: Text('Create New Journal'),
-            onPressed: () async {
-              await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          CreateJournalPage(journal: widget.journal)));
-              nullDateSelection();
-            },
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                  child: ElevatedButton(
+    return WillPopScope(
+      onWillPop: () async {
+        widget.journal.save();
+        return true; // allow pop
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Job Journal"),
+          centerTitle: true,
+          backgroundColor: Colors.green.shade700,
+        ),
+        backgroundColor: Colors.white,
+        body: Center(
+            child: Column(
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: Text(
+                  "Job Journal",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.green.shade700),
+                  textScaleFactor: 3,
+                )),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(primary: Colors.green.shade700),
+              child: Text('Create New Journal'),
+              onPressed: () async {
+                await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CreateJournalPage(journal: widget.journal)));
+                nullDateSelection();
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.green.shade700),
+                        child: Text(labelSelectButton),
+                        onPressed: () => _selectDate(context))),
+                Padding(
+                    padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                    child: ElevatedButton(
+                      onPressed: () => nullDateSelection(),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green.shade700),
-                      child: Text(labelSelectButton),
-                      onPressed: () => _selectDate(context))),
-              Padding(
-                  padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                  child: ElevatedButton(
-                    onPressed: () => nullDateSelection(),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.green.shade700),
-                    child: const Icon(Icons.delete_forever,
-                        color: Colors.white, size: 20),
-                  ))
-            ],
-          ),
-          journalToWidget()
-        ],
-      )),
+                      child: const Icon(Icons.delete_forever,
+                          color: Colors.white, size: 20),
+                    ))
+              ],
+            ),
+            journalToWidget()
+          ],
+        )),
+      ),
     );
   }
 }

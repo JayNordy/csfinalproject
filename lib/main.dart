@@ -6,7 +6,7 @@ import 'pages/journal_page.dart';
 import 'pages/comparing_page.dart';
 import 'pages/video_page.dart';
 import 'pages/sound_page.dart';
-import 'pages/calendar_page.dart';
+import 'pages/career_goals_page.dart';
 import 'package:finalproject/utils/journal.dart';
 import 'utils/database.dart';
 
@@ -17,12 +17,13 @@ void main() {
 
 class MyApp extends StatelessWidget {
   String journalFile = "journalData.🂿sv";
-  Journal journal = Journal(filename: "journalData.🂿sv");
+  Journal journal = Journal();
   JobData data = JobData();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
         home: Builder(
             builder: (context) => Scaffold(
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              JobSearchPage()));
+                                              JobSearchPage(data: data)));
                                 },
                               ),
                             ),
@@ -81,7 +82,7 @@ class MyApp extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              RelocatingPage()));
+                                              RelocatingPage(data: data)));
                                 },
                               ),
                             ),
@@ -103,7 +104,7 @@ class MyApp extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ComparingPage()));
+                                              ComparingPage(jobData: data)));
                                 },
                               ),
                             ),
@@ -157,7 +158,7 @@ class MyApp extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.green.shade700),
-                                child: const Text('Soothing Sounds'),
+                                child: const Text('Music & Motivational Speeches'),
                                 onPressed: () {
                                   Navigator.push(
                                       context,
@@ -177,14 +178,14 @@ class MyApp extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.green.shade700),
-                              child: const Text('Calendar'),
+                              child: const Text('Career Goals'),
                               onPressed: () async {
                                 //wait for page to exit before setting "soundsLoaded" to ture
                                 await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          CalendarPage()));
+                                          CareerGoalsPage()));
                               },
                             ),
                           ),
