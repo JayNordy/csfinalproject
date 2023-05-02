@@ -81,9 +81,9 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> {
       appBar: AppBar(
         title: Text("Career Goals"),
         centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.green.shade700,
       ),
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

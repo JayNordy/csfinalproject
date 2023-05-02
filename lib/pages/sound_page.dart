@@ -116,25 +116,25 @@ class _SoundsPageState extends State<SoundsPage> {
             appBar: AppBar(
               title: Text("Sounds"),
               centerTitle: true,
-              backgroundColor: Colors.blueGrey,
+              backgroundColor: Colors.green.shade700,
             ),
-            backgroundColor: Colors.grey.shade900,
+            backgroundColor: Colors.white,
             body: Center(
               child: Column(
                 children: <Widget>[
-                  Text("Relaxing Music", style: TextStyle(color: Colors.white, fontSize: 32),),
+                  Text("Relaxing Music", style: TextStyle(color: Colors.green.shade700, fontSize: 32),),
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(border: Border.all(color: Colors.deepPurpleAccent, width: 15)),
+                      decoration: BoxDecoration(border: Border.all(color: Colors.green.shade700, width: 15)),
                       child: ListView(
                         children: displayables.sublist(0,7),
                       ),
                     ),
                   ),
-                  Text("Motivational Speeches", style: TextStyle(color: Colors.white, fontSize: 32),),
+                  Text("Motivational Speeches", style: TextStyle(color: Colors.green.shade700, fontSize: 32),),
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(border: Border.all(color: Colors.lightGreen, width: 15)),
+                      decoration: BoxDecoration(border: Border.all(color: Colors.green.shade700, width: 15)),
                       child: ListView(
                         children: displayables.sublist(8),
                       ),

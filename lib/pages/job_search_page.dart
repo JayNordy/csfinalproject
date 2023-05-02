@@ -69,7 +69,7 @@ class _JobSearchState extends State<JobSearchPage>  {
                 ),
                 Expanded(
                   child: Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.deepPurpleAccent, width: 15)),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.white, width: 15)),
                     child: ListView(
                       children: displayables,
                     ),

@@ -74,6 +74,7 @@ class _CreateJournalPageState extends State<CreateJournalPage> {
       if ((check1 != false) && (check2 != false) && (check3 != false) && (check4 != false)) {
         widget.journal.addEvent(selectedDate, Company: company.text, Quality: rating.toInt(),
             Impressions: impressions.text, Challenges: challenges.text, Suggestions: suggestions.text);
+        widget.journal.save();
         Navigator.pop(context);
       }
 
