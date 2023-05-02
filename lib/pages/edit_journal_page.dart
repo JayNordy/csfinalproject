@@ -82,6 +82,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
             Impressions: impressions.text,
             Challenges: challenges.text,
             Suggestions: suggestions.text);
+        widget.journal.save();
         Navigator.pop(context);
       }
       else if(!check1 && check2)  {
@@ -91,6 +92,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
             Impressions: impressions.text,
             Challenges: challenges.text,
             Suggestions: suggestions.text);
+        widget.journal.save();
         Navigator.pop(context);
       }
       else if(check1 && !check2)  {
@@ -100,6 +102,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
             Impressions: impressions.text,
             Challenges: challenges.text,
             Suggestions: suggestions.text);
+        widget.journal.save();
         Navigator.pop(context);
       }
       else if(!check1 && !check2)  {
@@ -109,6 +112,7 @@ class _EditJournalPageState extends State<EditJournalPage> {
             Impressions: impressions.text,
             Challenges: challenges.text,
             Suggestions: suggestions.text);
+        widget.journal.save();
         Navigator.pop(context);
       }
     }
