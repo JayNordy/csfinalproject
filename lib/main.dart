@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
   String journalFile = "journalData.🂿sv";
   Journal journal = Journal();
   JobData data = JobData();
+  List<String> shortTermGoals = [];
+  List<String> longTermGoals = [];
+
 
   // This widget is the root of your application.
   @override
@@ -176,16 +179,19 @@ class MyApp extends StatelessWidget {
                             width: 150,
                             height: 150,
                             child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.green.shade700),
+                              style: ElevatedButton.styleFrom(primary: Colors.green.shade700),
                               child: const Text('Career Goals'),
                               onPressed: () async {
-                                //wait for page to exit before setting "soundsLoaded" to ture
+                                //wait for page to exit before setting "soundsLoaded" to true
                                 await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          CareerGoalsPage()));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CareerGoalsPage(
+                                      shortTermGoals: shortTermGoals,
+                                      longTermGoals: longTermGoals,
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                           ),
