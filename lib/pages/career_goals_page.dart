@@ -302,11 +302,13 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> with TickerProviderSt
                             content: Text('You have completed your career goals for now.\n\n'
                                 'You have completed your goals ${completedGoalsCount} times.'),
                             actions: <Widget>[
-                              TextButton(
+                              ElevatedButton(
                                 child: Text('OK'),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.green.shade700),
                               ),
                             ],
                           );
@@ -324,11 +326,13 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> with TickerProviderSt
                             title: Text('Incomplete goals'),
                             content: Text('You still have incomplete goals. Complete all of your goals before marking them as completed.'),
                             actions: <Widget>[
-                              TextButton(
+                              ElevatedButton(
                                 child: Text('OK'),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.green.shade700),
                               ),
                             ],
                           );
@@ -336,6 +340,8 @@ class _CareerGoalsPageState extends State<CareerGoalsPage> with TickerProviderSt
                       );
                     }
                   },
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green.shade700),
                   child: Text('Complete your career goals'),
                 ),
               ),
